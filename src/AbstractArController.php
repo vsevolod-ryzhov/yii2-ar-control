@@ -156,8 +156,7 @@ abstract class AbstractArController extends Controller
         return $this->render('@vendor/vsevolod-ryzhov/yii2-ar-control/src/views/edit', [
             'model' => $model,
             'shortClassName' => $shortClassName,
-            'attributes' => $editClass->scenarios()[$editClass->getScenario()],
-            'types' => $editClass->attributeTypes()
+            'attributes' => $editClass->attributeTypes()
         ]);
     }
 

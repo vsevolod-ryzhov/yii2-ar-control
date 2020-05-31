@@ -15,7 +15,7 @@ interface EditableInterface
 
     public function scenarios(): array;
     public function getScenario();
-    public function attributeTypes(): array;
+    public function attributeTypes(): TypeCollection;
 
     public function hasAccess(): bool;
 
