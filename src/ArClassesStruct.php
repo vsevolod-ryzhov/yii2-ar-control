@@ -47,9 +47,9 @@ class ArClassesStruct
     }
 
     /**
-     * @return SearchableInterface|null
+     * @return SearchableInterface
      */
-    public function getSearchableClass(): ?SearchableInterface
+    public function getSearchableClass(): SearchableInterface
     {
         return $this->searchableClass;
     }

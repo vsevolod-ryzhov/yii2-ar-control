@@ -13,9 +13,13 @@ interface EditableInterface
 
     public const EDITABLE_CLASS_SUFFIX = 'Edit';
 
+    public function scenarios(): array;
+    public function getScenario();
     public function attributeTypes(): array;
 
     public function hasAccess(): bool;
 
     public static function createInsertUrl($getParams = null): ?string;
+
+    public static function findOne($condition);
 }

@@ -7,6 +7,8 @@ namespace vsevolodryzhov\yii2ArControl;
 
 
 use DomainException;
+use Exception;
+use ReflectionClass;
 
 class ClassFactory
 {
@@ -29,5 +31,15 @@ class ClassFactory
         }
 
         return $struct;
+    }
+
+    public static function getShortName($className): string
+    {
+        try {
+            $short = (new ReflectionClass($className))->getShortName();
+        } catch (Exception $e) {
+            throw new DomainException("Can't get short name of provided class: " . $e->getMessage());
+        }
+        return $short;
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 /* @var $model */
 /* @var $className string */
-/* @var $canEdit boolean */
+/* @var $editUrl string|null */
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -24,9 +24,9 @@ try {
     throw new DomainException($e->getMessage());
 }
 
-if ($canEdit) {
+if ($editUrl) {
     echo Html::a(Yii::t('app', 'Edit'),
-        ['edit', 'className' => $className, 'id' => $model->getPrimaryKey()],
+        [$editUrl, 'className' => $className, 'id' => $model->getPrimaryKey()],
         ['class' => 'btn btn-primary']
     );
 }
