@@ -8,13 +8,15 @@ use yii\data\ActiveDataProvider;
 
 interface SearchableInterface
 {
-    const SCENARIO_SEARCH = 'search';
+    public const SCENARIO_SEARCH = 'search';
 
-    // SEARCHABLE_CLASS_SUFFIX
-    const SEARCHABLE_CLASS_SUFFIX = 'Search';
+    public const SEARCHABLE_CLASS_SUFFIX = 'Search';
 
     public function search($params): ActiveDataProvider;
+    public function getDetailViewAttributes(): array;
     public static function getGridColumns($searchModel = null): array;
 
     public function hasAccess(): bool;
+
+    public static function findOne($condition);
 }

@@ -8,13 +8,14 @@ namespace vsevolodryzhov\yii2ArControl;
 
 interface EditableInterface
 {
-    const SCENARIO_INSERT = 'insert';
-    const SCENARIO_UPDATE = 'update';
+    public const SCENARIO_INSERT = 'insert';
+    public const SCENARIO_UPDATE = 'update';
 
-    const EDITABLE_CLASS_SUFFIX = 'Edit';
+    public const EDITABLE_CLASS_SUFFIX = 'Edit';
 
     public function attributeTypes(): array;
-    public function getDetailViewAttributes(): array;
+
+    public function hasAccess(): bool;
 
     public static function createInsertUrl($getParams = null): ?string;
 }

@@ -4,6 +4,7 @@
     "type": "yii2-extension",
     "require": {
         "php": ">=7.1",
+        "ext-http": "*",
         "yiisoft/yii2": "^2.0"
     },
     "require-dev": {

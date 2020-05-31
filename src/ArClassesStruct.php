@@ -61,4 +61,12 @@ class ArClassesStruct
     {
         $this->searchableClass = $searchableClass;
     }
+
+    /**
+     * @return ActiveRecordInterface
+     */
+    public function getBaseClass(): ActiveRecordInterface
+    {
+        return $this->baseClass;
+    }
 }

@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection MissedViewInspection */
 
 declare(strict_types=1);
 
@@ -22,12 +22,12 @@ abstract class AbstractArController extends Controller
      * @return string
      * @throws HttpException
      */
-    public function actionGrid($className, $filterParams = null)
+    public function actionGrid($className, $filterParams = null): string
     {
         $classes = ClassFactory::getByOriginalClassName($className);
 
         $searchableClass = $classes->getSearchableClass();
-        if (!$classes->getSearchableClass()) {
+        if (!$searchableClass) {
             throw new HttpException(400, 'Searchable class doesn\'t exist');
         }
 
@@ -37,10 +37,41 @@ abstract class AbstractArController extends Controller
 
         $dataProvider = $searchableClass->search($filterParams ?? Yii::$app->request->get());
 
-        /** @noinspection MissedViewInspection */
         return $this->render('@vendor/vsevolod-ryzhov/yii2-ar-control/src/views/grid', [
             'dataProvider' => $dataProvider,
             'searchModel' => $searchableClass
+        ]);
+    }
+
+    /**
+     * Просмотр модели
+     * @param $className
+     * @param int $id
+     * @return string
+     * @throws HttpException
+     */
+    public function actionView($className, int $id): string
+    {
+        $classes = ClassFactory::getByOriginalClassName($className);
+
+        $searchableClass = $classes->getSearchableClass();
+        if (!$searchableClass) {
+            throw new HttpException(400, 'Searchable class doesn\'t exist');
+        }
+
+        $model = $searchableClass::findOne($id);
+        if (empty($model)) {
+            throw new HttpException(404, 'Object not found');
+        }
+
+        $editClass = $classes->getEditableClass();
+
+        $canEdit = ($editClass && $editClass->hasAccess());
+
+        return $this->render('@vendor/vsevolod-ryzhov/yii2-ar-control/src/views/item', [
+            'model' => $model,
+            'className' => $className,
+            'canEdit' => $canEdit
         ]);
     }
 }
