@@ -8,12 +8,14 @@ declare(strict_types=1);
 /* @var $attributes TypeCollection */
 /* @var $availableAttributes array */
 
+use vsevolodryzhov\yii2ArControl\assets\ChosenAsset;
 use vsevolodryzhov\yii2ArControl\EditableInterface;
 use vsevolodryzhov\yii2ArControl\TypeCollection;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\redactor\widgets\Redactor;
 use yii\widgets\ActiveForm;
+
+ChosenAsset::register($this);
 
 echo Html::beginTag('div', ['class' => 'row']);
 echo Html::beginTag('div', ['class' => 'col-sm-6']);

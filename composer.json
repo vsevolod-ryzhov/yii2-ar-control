@@ -5,7 +5,8 @@
     "require": {
         "php": ">=7.1",
         "yiisoft/yii2": "^2.0",
-        "yiidoc/yii2-redactor": "^2.0"
+        "yiidoc/yii2-redactor": "^2.0",
+        "harvesthq/chosen": "^1.8"
     },
     "require-dev": {
         "phpunit/phpunit": "4.0"

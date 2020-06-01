@@ -153,6 +153,7 @@ abstract class AbstractArController extends Controller
             }
         }
 
+        $this->view->registerJs('$(".chosen-select").chosen()');
         return $this->render('@vendor/vsevolod-ryzhov/yii2-ar-control/src/views/edit', [
             'model' => $model,
             'shortClassName' => $shortClassName,
