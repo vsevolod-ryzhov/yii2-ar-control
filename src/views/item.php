@@ -9,11 +9,7 @@ declare(strict_types=1);
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-echo Html::beginTag('div', ['class' => 'row']);
-echo Html::beginTag('div', ['class' => 'col-sm-6']);
-echo Html::a('&#8592 Back', '#', ['class' => 'btn btn-default', 'onClick' => 'window.history.back(); return false;']);
-echo Html::endTag('div'); // .col-sm-6
-echo Html::endTag('div'); // .row
+echo $this->render('_back');
 
 try {
     echo DetailView::widget([
