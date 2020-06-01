@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 /** @var $attributes array */
-/* @var $model */
+/* @var $model EditableInterface */
 /* @var $shortClassName string */
 /* @var $attributes TypeCollection */
 /* @var $availableAttributes array */
 
+use vsevolodryzhov\yii2ArControl\EditableInterface;
 use vsevolodryzhov\yii2ArControl\TypeCollection;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -32,6 +33,9 @@ $form = ActiveForm::begin([
 ]);
 
 foreach ($attributes as $name => $attribute) {
+    if (!$model->isAttributeSave($name)) {
+        continue;
+    }
     echo $attribute->print($form, $model, $name);
 
 //    if (is_string($current_attribute_info)) {

@@ -18,5 +18,10 @@ interface SearchableInterface
 
     public function hasAccess(): bool;
 
+    /**
+     * Should be redeclared in ActiveRecord
+     * @param $condition
+     * @return mixed
+     */
     public static function findOne($condition);
 }
