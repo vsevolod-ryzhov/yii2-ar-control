@@ -7,15 +7,28 @@ namespace vsevolodryzhov\yii2ArControl;
 
 
 use IteratorAggregate;
+use vsevolodryzhov\yii2ArControl\types\InvalidTypeClass;
 use vsevolodryzhov\yii2ArControl\types\TypeInterface;
 
 class TypeCollection implements IteratorAggregate
 {
     private $items = [];
 
-    public function add(string $attribute, TypeInterface $type): self
+    /**
+     * @param string $attribute
+     * @param string $className
+     * @param array $options
+     * @return $this
+     */
+    public function add(string $attribute, string $className, array $options = []): self
     {
-        $this->items[$attribute] = $type;
+        if (!class_exists($className)) {
+            throw new InvalidTypeClass("$className not found");
+        }
+        if (!in_array(TypeInterface::class, class_implements($className), true)) {
+            throw new InvalidTypeClass("$className must implement " . TypeInterface::class);
+        }
+        $this->items[$attribute] = new $className($options);
         return $this;
     }
 
