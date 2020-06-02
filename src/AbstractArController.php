@@ -72,9 +72,15 @@ abstract class AbstractArController extends Controller
 
         $dataProvider = $searchableClass->search($filterParams ?? Yii::$app->request->get());
 
+        $insert = null;
+        if ($classes->getEditableClass()) {
+            $insert = (new InsertButtonWidget($classes, Yii::$app->request->get()))->create();
+        }
+
         return $this->render('@vendor/vsevolod-ryzhov/yii2-ar-control/src/views/grid', [
             'dataProvider' => $dataProvider,
-            'searchModel' => $searchableClass
+            'searchModel' => $searchableClass,
+            'insert' => $insert
         ]);
     }
 

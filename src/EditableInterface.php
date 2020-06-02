@@ -52,9 +52,28 @@ interface EditableInterface
     public static function createInsertUrl($getParams = null): ?string;
 
     /**
+     * Get attribute, that must be provided to create new object
+     * @return string|null
+     */
+    public function getAdditionalRequiredAttribute(): ?string;
+
+    /**
+     * Get attributes, initialized before insert form displayed
+     * @return array|null
+     */
+    public function getAdditionalAddAttributes(): ?array;
+
+    /**
      * Should be redeclared in ActiveRecord
      * @param $condition
      * @return mixed
      */
     public static function findOne($condition);
+
+    /**
+     * Should be redeclared in ActiveRecord
+     * @param $attribute
+     * @return mixed
+     */
+    public function getAttributeLabel($attribute);
 }
